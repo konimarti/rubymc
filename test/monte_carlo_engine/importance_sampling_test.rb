@@ -19,15 +19,16 @@ class ImportanceSamplingTest < Minitest::Test
     #create monte carlo engine for sampling  
     engine = Rubymc::MonteCarloEngine::ImportanceSampling.new(
       f: Rubystats::NormalDistribution.new(0.0,1.0),
-      #g: ShiftedExponential.new
-      g: Rubystats::NormalDistribution.new(4.0,1.0)
+      g: ShiftedExponential.new
+      #g: Rubystats::NormalDistribution.new(4.0,1.0)
     )
     
     #run monte carlo simulation for P(Y > 3) with Y ~ N(0,1)
     experiment = Rubymc::MonteCarloSimulation::Simulation.new do
       iterations 100000
       sample { engine.sample }
-      calculate {|x| h=x[0]; w=x[1]; ((h>3.0)?(1.0):(0.0))*w}      
+      #calculate {|x| h=x[0]; w=x[1]; ((h>3.0)?(1.0):(0.0))*w}      
+      calculate {|h,w| ((h>3.0)?(1.0):(0.0))*w}      
     end
     
     #perform analysis on markov chain

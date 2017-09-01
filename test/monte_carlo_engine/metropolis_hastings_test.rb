@@ -15,13 +15,12 @@ class MetropolisHastingsTest < Minitest::Test
     experiment = Rubymc::MonteCarloSimulation::Simulation.new do
       burn_in 10000
       iterations 100000
-      sample { x=engine.sample; (x>0.0)?x:0.000001 }
+      # sample { x=engine.sample; (x>0.0)?x:0.000001 }
+      sample { engine.sample }
     end
     
     #perform analysis on markov chain
     m = Rubymc::MonteCarloSimulation.extract_measurements(experiment.run)            
-    
-    #puts "integral = #{m[0].mean}"
     
     assert_in_delta 3.0, m[0].mean, 0.1   
   end

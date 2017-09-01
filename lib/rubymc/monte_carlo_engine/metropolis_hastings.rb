@@ -6,7 +6,7 @@ module Rubymc
         f(y) - f(@xt) + g(@xt) - g(y) 
       end
       def eval(y)
-        Math.log(rand) < rho(y)
+        Math.log(Kernel.rand) < rho(y)
       end	 
     end
     

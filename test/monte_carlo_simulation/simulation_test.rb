@@ -1,5 +1,4 @@
 require "test_helper"
-require "rubystats"
 
 class SimulationTest < Minitest::Test
   def test_simulation    
@@ -27,7 +26,7 @@ class SimulationTest < Minitest::Test
       
     assert_equal results[0].size, 100
     
-    mean = results[0].inject(0.0) {|sum,x| sum + x} / results[0].size
+    mean = results[0].reduce(0.0,:+) / results[0].size
     assert_in_epsilon 2.0, mean, 0.000001   
   end
   
@@ -69,13 +68,13 @@ class SimulationTest < Minitest::Test
     assert_equal params[1].size, 100
     assert_equal params[2].size, 100
      
-    mean = params[0].inject(0.0) {|sum,x| sum + x} / params[0].size
+    mean = params[0].reduce(0.0,:+) / params[0].size
     assert_in_epsilon 2.0, mean, 0.000001   
     
-    mean = params[1].inject(0.0) {|sum,x| sum + x} / params[1].size
+    mean = params[1].reduce(0.0,:+) / params[1].size
     assert_in_epsilon 4.0, mean, 0.000001   
     
-    mean = params[2].inject(0.0) {|sum,x| sum + x} / params[2].size
+    mean = params[2].reduce(0.0,:+) / params[2].size
     assert_in_epsilon 6.0, mean, 0.000001   
   end
   

@@ -22,11 +22,11 @@ module Rubymc
       end
     
       def sum
-        @data.inject(0.0) {|sum,x| sum + x }
+        @data.reduce(0.0,:+)
       end
 	
       def mean
-        sum / size
+        sum.to_f / size
       end
       
       def variance #sample variance

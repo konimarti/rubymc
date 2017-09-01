@@ -1,6 +1,6 @@
-require "rubybayes"
+require "rubymc"
 
-include Rubybayes::MonteCarloSimulation
+include Rubymc::MonteCarloSimulation
 
 #define function to evaluate
 def f(x)
@@ -19,7 +19,7 @@ end
 results = experiment.run
 
 #merge chains and create Measurement object
-measurement = Measurement.new( Rubybayes::MonteCarloSimulation.merge_chains(results)[0] )
+measurement = Measurement.new( Rubymc::MonteCarloSimulation.merge_chains(results)[0] )
 
 #output
 integral = 2.0 * measurement.mean

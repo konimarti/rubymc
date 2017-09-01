@@ -119,7 +119,9 @@ module Rubymc
     end
     
     def self.run_and_combine(&block)
-      Rubymc::MonteCarloSimulation::Simulation.new(&block).run.get_merged_chains
+      sim = Rubymc::MonteCarloSimulation::Simulation.new(&block)
+      sim.run
+      sim.get_merged_chains
     end    
     
   end
